@@ -1,2 +1,3 @@
 # while-1-solve-algorithm
-This is an auto push repository for Baekjoon Online Judge created with [BaekjoonHub](https://github.com/BaekjoonHub/BaekjoonHub).
+🔁 while(1) solveAlgorithm(); - 살려주세요👩🏻‍💻🔥
+
