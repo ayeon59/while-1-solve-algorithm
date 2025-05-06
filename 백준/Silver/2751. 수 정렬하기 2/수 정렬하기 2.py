@@ -2,7 +2,5 @@ import sys
 input = sys.stdin.readline
 
 n = int(input())
-a = [int(input()) for _ in range(n)]
-a.sort()
-for x in a:
-    print(x)
+numbers = sorted(int(input()) for _ in range(n))
+print('\n'.join(map(str, numbers)))
