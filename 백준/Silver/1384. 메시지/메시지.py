@@ -1,6 +1,9 @@
+import sys
+inp = sys.stdin.readline
+
 Group = 1
 while True:
-    num = int(input())
+    num = int(inp())
     cnt = 0
     people=[]
     if not num : break
