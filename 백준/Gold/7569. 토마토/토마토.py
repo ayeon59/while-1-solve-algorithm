@@ -2,7 +2,8 @@ from collections import deque
 
 m, n, h = map(int, input().split())
 tomato = []
-date = 0
+cnt = 0
+
 dz = [-1, 1, 0, 0, 0, 0]
 dy = [0, 0, -1, 1, 0, 0]
 dx = [0, 0, 0, 0, -1, 1]
@@ -17,10 +18,8 @@ for _ in range(h):
 visited = [[[False]*m for _ in range(n)] for _ in range(h)]
 
 def bfs(z,y,x):
-    
+    global cnt
     q = deque()
-    
-
     for z in range(h):
         for y in range(n):
             for x in range(m):
@@ -28,9 +27,12 @@ def bfs(z,y,x):
                     q.append((z, y, x))
                     visited[z][y][x] = True
 
+                elif tomato[z][y][x] == 0:
+                    cnt += 1
+
     while q:
         cz, cy, cx = q.popleft()
-        
+
         for i in range(6):
             nz = cz + dz[i]
             ny = cy + dy[i]
@@ -40,17 +42,11 @@ def bfs(z,y,x):
                     visited[nz][ny][nx] = True
                     tomato[nz][ny][nx] = tomato[cz][cy][cx] + 1
                     q.append((nz, ny, nx))
+                    cnt -= 1
+    if cnt == 0 :
+        return tomato[cz][cy][cx] - 1
+    else :
+        return -1
 
-bfs(0,0,0)
 
-
-max_day = 0
-for z in range(h):
-    for y in range(n):
-        for x in range(m):
-            if tomato[z][y][x] == 0:
-                print(-1)
-                exit()
-            max_day = max(max_day, tomato[z][y][x])
-
-print(max_day - 1)
+print(bfs(0,0,0))
