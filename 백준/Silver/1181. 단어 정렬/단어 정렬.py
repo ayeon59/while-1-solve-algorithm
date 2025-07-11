@@ -1,9 +1,10 @@
 n = int(input())
-a = []
+a = set()
 for _ in range(n):
-    n = input()
-    a.append(n)
-b = list(set(a))   
-b.sort(key=lambda x: (len(x), x))
-for x in b:
-    print(x)
+    a.add(input())
+a = list(a)
+a.sort()
+a.sort(key=lambda x: len(x))
+
+for x in a:
+    print(x) 
