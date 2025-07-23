@@ -28,7 +28,11 @@ def cut_line(start,end):
     else :
         cut_line(start,mid-1)
 
-cut_line(1,max(line))
+max_length = sum(line) // n
+min_num = n//k + 1
+min_length = min(line) // min_num + 1
+
+cut_line(min_length,max_length)
 print(length)
 
 
