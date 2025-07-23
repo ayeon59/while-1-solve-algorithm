@@ -1,6 +1,5 @@
-#컴퓨터야 최대 자를 수 있는 길이좀 알려줘라
-#너무 긴걸로 자르면 총 갯수를 못뽑고
-
+import sys
+input = sys.stdin.readline
 k,n = map(int,input().split())
 line = [int(input()) for _ in range (k)]
 length = 0
@@ -28,11 +27,12 @@ def cut_line(start,end):
     else :
         cut_line(start,mid-1)
 
-max_length = sum(line) // n
-min_num = n//k + 1
-min_length = min(line) // min_num + 1
+# max_length = sum(line) // n
+# min_num = n//k + 1
+# min_length = min(line) // min_num + 1
 
-cut_line(min_length,max_length)
+# cut_line(min_length,max_length)
+cut_line(1,max(line))
 print(length)
 
 
