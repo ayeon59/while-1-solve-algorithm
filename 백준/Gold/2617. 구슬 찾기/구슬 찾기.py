@@ -10,10 +10,9 @@ for _ in range(m):
     graph1[b][a] = 1
     graph2[a][b] = 1
 
-
-for k in range(n+1):
-    for i in range(n+1):
-        for j in range(n+1):
+for k in range(1,n+1):
+    for i in range(1,n+1):
+        for j in range(1,n+1):
             if graph1[i][k] == 1 and graph1[k][j] == 1:
                 graph1[i][j] = 1
             if graph2[i][k] == 1 and graph2[k][j] == 1:
