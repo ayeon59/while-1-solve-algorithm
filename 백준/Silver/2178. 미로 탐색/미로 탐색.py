@@ -1,34 +1,24 @@
+import sys
 from collections import deque
+input = sys.stdin.readline
 
-n, m = map(int,input().split())
-miro = []
-ans = 0
-
+n,m = map(int,input().split())
+maze = [list(map(int, input().strip())) for _ in range(n)]
 dx = [-1,1,0,0]
 dy = [0,0,-1,1]
 
-for i in range(n):
-    miro.append(list(map(int, input())))
-
-def bfs(x,y):
-    q = deque()
-    q. append((x,y))
-
-    while q :
-        cx, cy = q.popleft()
-
+def bfs():
+    while queue :
+        cx,cy = queue.popleft()
         for i in range(4):
-            nx = cx + dx[i] 
+            nx = cx + dx[i]
             ny = cy + dy[i]
-
-            if 0<=nx<n and 0<=ny<m and miro[nx][ny]==1:
-                q.append((nx,ny))
-                miro[nx][ny] += miro[cx][cy]
-                
-
+            if 0<=nx<n and 0<=ny<m :
+                if maze[nx][ny] == 1:
+                    maze[nx][ny] = maze[cx][cy] + 1
+                    queue.append((nx, ny))
 
 
-
-bfs(0,0)
-
-print(miro[n-1][m-1])
+queue = deque([(0,0)])
+bfs()
+print(maze[n-1][m-1])
