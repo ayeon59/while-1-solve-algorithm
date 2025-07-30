@@ -2,29 +2,33 @@ import sys
 import heapq
 input = sys.stdin.readline
 
-v, e = map(int, input().split())
-graph = [[] for _ in range(v + 1)]
-
-for _ in range(e):
-    a, b, cost = map(int, input().split())
-    graph[a].append((cost, b))
-    graph[b].append((cost, a))
-
-visited = [False] * (v + 1)
-min_heap = []
-heapq.heappush(min_heap, (0, 1))  
+v, e = map(int,input().split())
+visited = [False] * (v+1)
+graph = [[] for _ in range(v+1)]
+heap = []
 total_weight = 0
 
-while min_heap:
-    cost, now = heapq.heappop(min_heap)
 
-    if visited[now]:
-        continue
-    visited[now] = True
-    total_weight += cost
+def prim(start):
+    global total_weight
+    visited[start] = True
+    for edge in graph[start]:
+        heapq.heappush(heap,edge)
+        
+    while heap :
+        weight, next_node= heapq.heappop(heap)
+        if not visited[next_node] :
+            visited[next_node] = True
+            total_weight += weight
+            for edge in graph[next_node]:
+                if not visited[edge[1]] :
+                    heapq.heappush(heap,edge)
 
-    for next_cost, next_node in graph[now]:
-        if not visited[next_node]:
-            heapq.heappush(min_heap, (next_cost, next_node))
+for _ in range(e):
+    a,b,weight = map(int,input().split())
+    graph[a].append((weight,b))
+    graph[b].append((weight,a))    
 
+prim(1)
 print(total_weight)
+
