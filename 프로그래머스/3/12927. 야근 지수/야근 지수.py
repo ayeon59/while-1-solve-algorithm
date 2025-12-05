@@ -12,10 +12,6 @@ def solution(n, works):
     for _ in range(n):
         largest = heapq.heappop(h)  # 가장 큰 값(= 가장 작은 음수)
 
-        # 0이면 더 이상 줄일 일이 없음 (다 0이라는 뜻)
-        if largest == 0:
-            heapq.heappush(h, largest)
-            break
 
         # 1 줄이기: 음수니까 +1을 해주면 절댓값이 1 줄어듦
         largest += 1
